@@ -1,0 +1,24 @@
+Texture     TexAlien1    resources/images/invaders/Alien1.png
+Texture     TexAlien2    resources/images/invaders/Alien2.png
+Texture     TexAlien3    resources/images/invaders/Alien3.png
+Texture     TexPlayer    resources/images/invaders/Player.png
+Texture     TexDeath     resources/images/invaders/Death.png
+Texture     TexShelter   resources/images/invaders/base_standard.png
+Texture     TexAlienLaser1     resources/images/invaders/Alien_Laser1.png
+Texture     TexAlienLaser2     resources/images/invaders/Alien_Laser2.png
+Texture     TexAlienLaser3     resources/images/invaders/Alien_Laser3.png
+Texture     TexExplosion       resources/images/invaders/explosion.png
+Texture     TexPlayerBullet    resources/images/invaders/Player_Laser.png
+Animation   Alien1       TexAlien1   2    0
+Animation   Alien2       TexAlien2   2    0
+Animation   Alien3       TexAlien3   2    0
+Animation   Player       TexPlayer   1    0
+Animation   Death        TexDeath    1    0
+Animation   Shelter      TexShelter    1    0
+Animation   PlayerBullet TexPlayerBullet   1    0
+Animation   Explosion    TexExplosion   1    0
+Animation   AlienLaser1    TexAlienLaser1   4    5
+Animation   AlienLaser2    TexAlienLaser2   4    5
+Animation   AlienLaser3    TexAlienLaser3   4    5
+Font        Mario        resources/fonts/mario.ttf
+Font        SpaceInvaders        resources/fonts/space_invaders.ttf

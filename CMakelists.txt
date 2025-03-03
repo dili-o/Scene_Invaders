@@ -1,0 +1,44 @@
+cmake_minimum_required(VERSION 3.0)
+project(Space_Invaders)
+
+set(SFML_DIR "${CMAKE_SOURCE_DIR}/vendor/SFML-2.5.1/lib/cmake/SFML")
+
+set(RESOURCES_DIR "${CMAKE_SOURCE_DIR}/resources")
+
+set(CMAKE_CXX_STANDARD 17)
+
+# Find SFML
+find_package(SFML 2.5.1 COMPONENTS system window graphics REQUIRED)
+
+include_directories(${CMAKE_SOURCE_DIR}/includes)
+
+file(GLOB SOURCE_FILES "src/*.cpp")
+
+set(SOURCES
+    ${SOURCE_FILES}
+)
+
+add_executable(${PROJECT_NAME} ${SOURCES})  
+target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-audio)
+
+# Copy SFML DLLs Automatically
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    $<$<CONFIG:Debug>:"${SFML_DIR}/../../../bin/sfml-graphics-d-2.dll">
+    $<$<CONFIG:Debug>:"${SFML_DIR}/../../../bin/sfml-window-d-2.dll">
+    $<$<CONFIG:Debug>:"${SFML_DIR}/../../../bin/sfml-system-d-2.dll">
+    $<$<CONFIG:Debug>:"${SFML_DIR}/../../../bin/sfml-audio-d-2.dll">
+
+    $<$<CONFIG:Release>:"${SFML_DIR}/../../../bin/sfml-graphics-2.dll">
+    $<$<CONFIG:Release>:"${SFML_DIR}/../../../bin/sfml-window-2.dll">
+    $<$<CONFIG:Release>:"${SFML_DIR}/../../../bin/sfml-system-2.dll">
+    $<$<CONFIG:Release>:"${SFML_DIR}/../../../bin/sfml-audio-2.dll">
+    $<TARGET_FILE_DIR:${PROJECT_NAME}>
+)
+
+# Copy the resources folder to the build directory where the executable will be created
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+    "${RESOURCES_DIR}"
+    "$<TARGET_FILE_DIR:${PROJECT_NAME}>/resources"
+)
